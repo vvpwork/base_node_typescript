@@ -8,7 +8,7 @@
   "license": "MIT",
   "scripts": {
     "test": "jest --detectOpenHandles --colors",
-    "lint": "eslint src/** tests/** --fix --cache",
+    "lint": "eslint src/**  --fix --cache",
     "build": "rimraf ./build && tsc",
     "start": "ts-node-dev --respawn  ./index.ts",
     "start:prod": "yarn run build && nodemon ./build/index.js"
@@ -45,7 +45,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "npm run lint"
+      "pre-commit": ""
     }
   }
 }
