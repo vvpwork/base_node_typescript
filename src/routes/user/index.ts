@@ -13,7 +13,6 @@ export function userRoutes(app: Application) {
         title: Joi.string(),
         gender: Joi.string().valid('M', 'F').required(),
         email: Joi.string().email().required(),
-        password: Joi.string().required(),
         first_name: Joi.string(),
         last_name: Joi.string(),
         dateOfBirth: Joi.string().isoDate(),

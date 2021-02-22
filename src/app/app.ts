@@ -3,7 +3,7 @@ import { errors } from "celebrate";
 import bodyParser from "body-parser";
 import morgan from "morgan";
 import cors from "cors";
-import helmet from 'helmet'
+import helmet from "helmet";
 // import session from "express-session";
 // import redis from "redis";
 // import connectRedis from "connect-redis";
@@ -16,10 +16,13 @@ const app = express();
 
 const err = (req: Request, res: Response, next: NextFunction) => {
   res.statusCode = 404;
-  res.end("not found");
+  res.send({
+    status: 404,
+    data: "Bad request page not found",
+  });
   next();
 };
-//************* session with redis client 
+//************* session with redis client
 // const RedisStore = connectRedis(session)
 // const redisClient = redis.createClient({
 //   host: 'localhost',
@@ -38,17 +41,16 @@ const err = (req: Request, res: Response, next: NextFunction) => {
 //   saveUninitialized: false,
 //   cookie: {
 //       secure: false, // if true only transmit cookie over https
-//       httpOnly: false, // if true prevent client side JS from reading the cookie 
+//       httpOnly: false, // if true prevent client side JS from reading the cookie
 //       maxAge: 1000 * 60 * 10 // session max age in miliseconds
 //   }
 // }))
-
 
 app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(morgan("combined"));
-app.use(helmet())
+app.use(helmet());
 
 // routes
 userRoutes(app);

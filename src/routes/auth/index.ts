@@ -20,7 +20,6 @@ export const authRoutes = (app: Application) => {
       [Segments.BODY]: Joi.object().keys({
         otpauth: Joi.string().required(),
         username: Joi.string().email().required(),
-        password: Joi.string().required(),
       }),
     }),
     asyncWrapper(loginUser)
