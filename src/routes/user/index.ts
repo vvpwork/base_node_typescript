@@ -1,12 +1,11 @@
-import { Application } from "express";
-import { Joi, celebrate, Segments } from "celebrate";
-import { asyncWrapper } from "../../helpers/asyncWrapper";
-import { createUser } from "./createUser";
-import { routesPath } from "../../configs";
+import { Application } from 'express';
+import { Joi, celebrate, Segments } from 'celebrate';
+import { asyncWrapper } from '../../helpers/asyncWrapper';
+import { createUser } from './createUser';
+import { routesPath } from '../../configs';
 
-
-export function userRoutes(app: Application) {
-  app.post(
+export function userRoutes(app: Application): Application {
+  return app.post(
     routesPath.userCreate,
     celebrate({
       [Segments.BODY]: Joi.object().keys({
@@ -26,6 +25,6 @@ export function userRoutes(app: Application) {
         selected_country: Joi.string(),
       }),
     }),
-    asyncWrapper(createUser)
+    asyncWrapper(createUser),
   );
 }
